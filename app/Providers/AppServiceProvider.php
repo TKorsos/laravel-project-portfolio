@@ -2,7 +2,17 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
+
+class MyClass {
+    function __get($a){
+        
+    }
+}
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +29,35 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $globalSettings= new MyClass;
+
+        $globalSettings = Cache::remember('global_settings', 60, function () {
+            // Objektum helyett inkább tömböt készítünk, így könnyebb felülírni a configot
+            return Setting::all()->pluck('value', 'key')->toArray();
+        });
+
+        /*
+        if(isset($globalSettings['listing_perpage'])) {
+            $perpageValue = $globalSettings['listing_perpage'];
+            config([
+                'listing.category' => $perpageValue,
+                'listing.search' => $perpageValue,
+            ]);
+        }
+        */
+
+        View::share('globalSettings', (object) $globalSettings);
+
+        View::share('globalCategories', Category::get());
+
+
+        $menuItems = [
+            (object) ['title' => 'Kezdőlap', 'route' => 'home'],
+            (object) ['title' => 'Portfólió', 'route' => 'portfolio'],
+            (object) ['title' => 'Rólam', 'route' => 'about'],
+            (object) ['title' => 'Kapcsolat', 'route' => 'contact'],
+        ];
+
+        View::share('menuItems', $menuItems);
     }
 }

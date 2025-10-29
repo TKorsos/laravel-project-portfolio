@@ -38,8 +38,30 @@ function initScrollBtn() {
     });
 }
 
+//
+function observerIndexPortfolioImages() {
+    document.querySelectorAll('.index-portfolio').forEach((img, index) => {
+        const observer = new IntersectionObserver((entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setTimeout( () => {
+                        entry.target.style.transition = 'opacity 1s ease-out, transform 1s ease-out';
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }, index * 200);
+                    obs.unobserve(entry.target); // csak egyszer animáljuk
+                }
+            });
+        }, {
+            threshold: 0.1 // 10% láthatóság kell az aktiváláshoz
+        });
+    observer.observe(img);
+    });
+}
+
 function render() {
     initScrollBtn();
+    observerIndexPortfolioImages();
 }
 
 render();
