@@ -10,8 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+
     <!-- google font end -->
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <!-- Ide jöhetnek a stíluslapok, script elemek -->
     @yield('head')
 </head>
@@ -41,14 +42,14 @@
                     </ul> 
                     <form class="d-flex" role="search">
                         <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                        <button id="nav-search" class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>
         </nav>
     </header>
 
-    {{-- errors success globális üzenetek? --}}
+    {{-- errors success globális üzenetek? de csak ha minden oldalra kell máskülönben elég ott ahol szükséges!! --}}
 
     <main class="container-fluid">
         @yield('content')
@@ -60,15 +61,43 @@
         &copy; @if (false) {{ $globalSettings->website_launch_date.' - ' }} @endif {{date('Y')}} {{config('app.name', 'Laravel')}}. {{$globalSettings->admin_email}}. Minden jog fenntartva.
     </footer>
 
-    <!-- Go to Top -->
-    <button id="scrollTopBtn" class="btn btn-dark">
-        <i class="bi bi-arrow-up"></i>
+    <!-- Go to Top / contact btn -->
+    {{-- <button id="scrollTopBtn" class="btn btn-dark">
+        <i class="bi bi-arrow-up" aria-hidden="true"></i>
+    </button> --}}
+
+    <button id="index-contact-btn" class="btn btn-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasContact" aria-controls="offcanvasContact">
+        <span class="text-uppercase">lépj szintet</span>
     </button>
-    <!-- End Go to Top -->
+    <!-- End Go to Top / contact btn -->
+
+    <!-- contact offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasContact" aria-labelledby="offcanvasContactLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasContactLabel">Offcanvas</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div>
+                Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+            </div>
+            <div class="dropdown mt-3">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                    Dropdown button
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- contact offcanvas vége -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="{{ asset('assets/js/app.js') }}"></script>
     <!-- Oldalspecifikus Javascript -->
-    @yield('scripts')
+    @stack('scripts')
 </body>
 </html>

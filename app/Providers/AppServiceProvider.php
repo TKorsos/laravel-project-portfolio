@@ -55,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
             (object) ['title' => 'Kezdőlap', 'route' => 'home'],
             (object) ['title' => 'Portfólió', 'route' => 'portfolio'],
             (object) ['title' => 'Rólam', 'route' => 'about'],
+            (object) ['title' => 'Blog', 'route' => 'blog.index'],
             (object) ['title' => 'Kapcsolat', 'route' => 'contact'],
         ];
 
