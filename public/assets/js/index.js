@@ -1,3 +1,5 @@
+// csak az index oldalra vonatkozó scriptek
+// lap tetejére gomb script egyelőre nincs már ilyen gomb, nem lesz rá szükség?
 function initScrollBtn() {
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     let isVisible = false;
@@ -38,7 +40,7 @@ function initScrollBtn() {
     });
 }
 
-//
+// portfóliót megjelenítő animáció
 function observerIndexPortfolioImages() {
     document.querySelectorAll('.index-portfolio').forEach((img, index) => {
         const observer = new IntersectionObserver((entries, obs) => {
@@ -59,9 +61,44 @@ function observerIndexPortfolioImages() {
     });
 }
 
+function observerIndexAboutContainers() {
+    document.addEventListener('DOMContentLoaded', () => {
+        const pictureContainer = document.getElementById('index-about-picture-container');
+        const textContainer = document.getElementById('index-about-text-container');
+
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                pictureContainer.classList.add('animate-in');
+                textContainer.classList.add('animate-in');
+                observer.unobserve(entry.target);
+            }
+            });
+        }, observerOptions);
+
+        observer.observe(pictureContainer);
+    });
+}
+
+
+
+// oldalon megjelenő contact gomb jobb alsó sarok
+function indexContactBtn() {
+    window.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('index-contact-btn');
+        btn.classList.add('visible');
+    });
+}
+
 function render() {
-    initScrollBtn();
+    // initScrollBtn();
     observerIndexPortfolioImages();
+    observerIndexAboutContainers();
+    indexContactBtn();
 }
 
 render();

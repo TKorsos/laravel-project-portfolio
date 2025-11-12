@@ -1,0 +1,486 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+
+:root {
+  --global-bg: rgb(244, 244, 244);
+  /* itt majd a végleges font-family szerepeljen ha meglesz */
+  --global-font: Arial, Helvetica, sans-serif;
+  --global-orange: #f97316;
+  --global-border-radius: 10px;
+  --global-white: var(--global-bg);
+  --global-overlay: rgb(20 30 35 / .3);
+  --font-nunito: "Nunito Sans", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+  /* általános shadow */
+  --nav-link-text-shadow: 1px 1px 3px rgb(0, 0, 0);
+  --nav-link-text-color: rgb(225, 225, 225);
+  /* text-lightorange még nincs használatban */
+  --text-lightorange: rgb(254, 187, 62);
+  --white-space-row: 7.5rem;
+  --btn-bg-hover: rgb(249 115 22 / .7);
+  --btn-box-shadow: 1px 1px 3px #000;
+
+  --hero-bg: rgb(225, 225, 225);
+  --hero-text: rgb(244, 244, 244);
+  --hero-text-shadow: 1px 1px 3px rgb(0, 0, 0);
+  --porftolio-btn-bg: var(--global-orange);
+  --portfolio-text-color: rgb(255, 255, 255);
+  --portfolio-text-shadow: 1px 1px 3px rgb(0, 0, 0);
+  --about-email-color: #555;
+  --about-text-base-color: #222;
+}
+
+html, body {
+  box-sizing: border-box;
+  background-color: var(--global-bg);
+  font-family: var(--global-font);
+  overflow-x: hidden;
+}
+
+.whitespace-row-custom {
+  padding: var(--white-space-row) 0;
+}
+
+#logo {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+#navigationContainer {
+  background-color: transparent;
+  backdrop-filter: saturate(180%) blur(1.875rem);
+  -webkit-backdrop-filter: saturate(180%) blur(1.875rem);
+}
+
+a.nav-link {
+  width: 6.4rem!important;
+  color: var(--nav-link-text-color);
+  text-shadow: var(--nav-link-text-shadow);
+  text-transform: uppercase;
+}
+
+a.nav-link:hover {
+  color: var(--global-white)!important;
+}
+
+a.active {
+  color: var(--global-white)!important;
+  font-weight: bold;
+}
+
+/* egységes gomb css */
+.btn, input, textarea {
+  border-radius: 0!important;
+}
+
+.btn.btn-dark {
+  border: 1px solid var(--global-orange);
+  background-color: var(--global-orange);
+  transition: background-color .5s ease-in-out, border-color .5s ease-in-out, box-shadow .5s ease-in-out;
+}
+
+a.btn.btn-dark:hover {
+  border-color: transparent;
+  background-color: var(--btn-bg-hover);
+  box-shadow: var(--btn-box-shadow);
+}
+
+.btn.btn-outline-dark, #nav-search {
+  border: 1px solid var(--global-orange);
+  background-color: transparent;
+  color: var(--global-orange);
+  transition: background-color .5s ease-in-out, color .5s ease-in-out, box-shadow .5s ease-in-out;
+}
+
+.btn.btn-outline-dark:hover, #nav-search:hover {
+  background-color: var(--global-orange);
+  color: var(--global-bg);
+  box-shadow: var(--btn-box-shadow);
+}
+
+/* egységes gomb css vége */
+
+.link-underline-animation {
+  position: relative;
+  display: inline-block;
+  text-decoration: none;
+}
+
+.link-underline-animation::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background-color: var(--global-orange);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .3s ease-in-out;
+}
+
+.link-underline-animation:hover::after {
+  transform: scaleX(1);
+}
+
+.link-underline-animation:not(:hover)::after {
+  transform-origin: right;
+  transform: scaleX(0);
+}
+
+/* lap tetejére gomb */
+/* #scrollTopBtn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  display: none;
+  z-index: 99;
+  transition: opacity 0.4s ease-in-out;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+} */
+
+#index-contact-btn {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  background-color: var(--global-orange);
+  border-color: transparent;
+  border-radius: var(--global-border-radius);
+  z-index: 99;
+  opacity: 0;
+  transition: opacity 0.6s ease-in-out, transform 0.4s ease-in-out;
+}
+
+#index-contact-btn.visible {
+  opacity: 1;
+}
+
+#index-contact-btn:hover {
+  transform: scale(1.1);
+}
+
+.top-section-padding {
+  padding: 5rem 0;
+}
+
+/* hero szekció */
+#hero-container {
+  position: relative;
+  background-color: var(--hero-bg);
+}
+
+#hero-container::before {
+  /* oklch new rgb function */
+  --darken-1: rgba(20, 42, 43, .7);
+  /* --darken-1: rgb(180 42 43 / .7); */
+  --darken-2: rgba(20, 42, 43, .8);
+  --darken-3: rgba(20, 42, 43, .9);
+  --light: rgba(20, 42, 43, .2);
+
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(to bottom, var(--darken-3) 0%, var(--darken-2) 2%, var(--darken-1) 4%, var(--light) 10%, var(--light) 27%, var(--light) 44%, var(--darken-1) 61%, var(--darken-2) 80%, var(--darken-3) 100%);
+  z-index: 2;
+}
+
+#hero-video {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#hero-video video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+}
+
+.hero-text-container {
+  padding-top: 5rem;
+  z-index: 3;
+}
+
+#hero-title, #hero-text {
+  color: var(--hero-text);
+  text-shadow: var(--hero-text-shadow);
+}
+
+#hero-title {
+  font-family: var(--font-nunito);
+  font-size: clamp(28px, 6vw, 100px);
+  text-wrap: balance;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#hero-text, #hero-cta-btn-container {
+  font-family: var(--font-poppins);
+}
+
+#hero-text {
+  font-size: 1.3rem;
+}
+
+#hero-cta-btn-container {
+  font-size: 1.125rem;
+}
+
+@media only screen and (max-width: 768px) {
+  #hero-text {
+    font-size: 1rem;
+  }
+
+  #hero-cta-btn-container {
+    font-size: .875rem;
+  }
+}
+
+#hero-whitespace {
+  width: 25%;
+}
+
+#hero-text-paragraph, #hero-cta-btn {
+  width: 75%;
+}
+
+#hero-cta-btn > a {
+  /* color: var(--about-email-color); */
+  /* global szín lesz majd */
+  color: var(--global-white);
+  text-decoration: none;
+  transition: color .5s ease-in-out;
+}
+
+#hero-cta-btn > a:hover {
+  color: var(--global-orange);
+}
+
+#hero-text-paragraph > p {
+  padding-top: 0;
+}
+
+@media only screen and (max-width: 768px) {
+  #hero-whitespace, #hero-text-paragraph, #hero-cta-btn {
+    width: 100%;
+  }
+}
+
+.full-width-box {
+  padding: 0!important;
+}
+/* hero szekció vége */
+
+/* portfólió szekció */
+.index-portfolio {
+  height: 22.5rem;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.index-portfolio-img-container {
+  position: relative;
+  text-decoration: none!important;
+  overflow: hidden;
+  transition: filter .8s ease-in-out;
+}
+
+#row-portfolio:has(.index-portfolio-img-container:hover) .index-portfolio-img-container {
+  filter: grayscale(100%);
+}
+
+#row-portfolio:has(.index-portfolio-img-container:hover) .index-portfolio-img-container:hover {
+  filter: grayscale(0%);
+}
+
+.index-portfolio-img-container > .index-portfolio-imgs {
+  position: absolute;
+  object-fit: cover;
+  z-index: 0;
+  transition: all .8s ease-in-out;
+}
+
+.index-portfolio-img-container:hover .index-portfolio-imgs {
+  transform: scale(1.3);
+}
+
+.index-portfolio-img-container > .index-portfolio-title {
+  color: var(--portfolio-text-color);
+  font-size: 2.75rem;
+  text-transform: uppercase;
+  text-shadow: var(--portfolio-text-shadow);
+  z-index: 1;
+}
+
+.index-portfolio-img-container > .index-portfolio-fake-btn {
+  padding: 1rem 2.5rem;
+  background-color: var(--porftolio-btn-bg);
+  color: var(--portfolio-text-color);
+  font-size: .8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: var(--portfolio-text-shadow);
+
+  transition: all .6s ease-in-out;
+  z-index: 1;
+}
+
+.index-portfolio-img-container > .index-portfolio-fake-btn:hover {
+  background-color: var(--btn-bg-hover);
+}
+/* portfólió szekció vége */
+
+/* rólam szekció */
+#index-about-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+}
+
+#index-about-img:hover {
+  animation: pulse 10s infinite;
+}
+
+#index-about-picture-container {
+  flex: 2;
+  width: 500px;
+  height: 500px;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+#index-about-picture-container.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#index-about-text-container {
+  flex: 3;
+  gap: 1rem;
+  font-family: var(--font-nunito);
+  color: var(--about-text-base-color);
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+
+#index-about-text-container.animate-in {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#index-about-title {
+  margin-bottom: 12px;
+}
+
+#index-about-paragraph {
+  font-size: 15px;
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+#index-about-email, #index-about-linkedin {
+  color: var(--about-email-color);
+  text-decoration: none;
+  font-style: italic;
+  transition: color .5s ease-in-out;
+}
+
+#index-about-email:hover, #index-about-linkedin:hover {
+  color: var(--global-orange);
+}
+
+
+/* TESZT */
+#index-about-btn {
+  background-color: transparent;
+  border-color: var(--global-orange);
+  color: var(--global-orange);
+  padding: 0.75em 2em;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: var(--global-border-radius);
+  transition: background-color .5s ease-in-out, color 1.5s ease-in-out;
+  position: relative;
+}
+
+/* Animált fény árnyék hoverkor */
+#index-about-btn:hover {
+  background-color: var(--global-orange);
+  color: var(--global-white);
+}
+
+/* Opció animált fény mozgáshoz pszeudoelem segítségével */
+#index-about-btn::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -35%;
+  background-color: transparent;
+  width: 100%;
+  height: 50%;
+  transform: perspective(25px) rotateX(40deg) scale(1.2, 0.45);
+  filter: blur(17px);
+  transition: background-color 1s;
+}
+
+#index-about-btn:hover::after {
+  background-color: var(--global-orange);
+}
+
+
+/* TESZT VÉGE */
+
+
+/* rólam szekció vége */
+
+/* blog szekció */
+.blog-title, .blog.col, #load-more, .btn-more-blog {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.blog-title.animate, .blog.col.animate, #load-more.animate, .btn-more-blog.animate {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all .6s ease-out var(--delay, 0s);
+}
+
+
+
+
+/* blog szekció vége */
+
+
+/* media queries szekció */
+@media only screen and (min-width: 992px) {
+  #menuContainer {
+    width: 31.25rem;
+  }
+  a.nav-link  {
+    text-align: center;
+  }
+}
