@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 {{-- adott portfólió kategória megjelenítése --}}
-@section('title', $category->name.' - Várkuti Tünde Krisztina tervezőgrafikus')
+@section('title', $category->name)
 
 @section('content')
     {{-- portfólió kategória + portfólió elemei --}}

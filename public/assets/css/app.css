@@ -1,21 +1,26 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css");
 
 :root {
   --global-bg: rgb(244, 244, 244);
-  /* itt majd a végleges font-family szerepeljen ha meglesz */
-  --global-font: Arial, Helvetica, sans-serif;
+  --global-font: "Lato", Arial, Helvetica, sans-serif;
   --global-orange: #f97316;
   --global-border-radius: 10px;
   --global-white: var(--global-bg);
   --global-overlay: rgb(20 30 35 / .3);
   --font-nunito: "Nunito Sans", sans-serif;
   --font-poppins: "Poppins", sans-serif;
-  /* általános shadow */
+  /* általános shadow? */
   --nav-link-text-shadow: 1px 1px 3px rgb(0, 0, 0);
   --nav-link-text-color: rgb(225, 225, 225);
   /* text-lightorange még nincs használatban */
   --text-lightorange: rgb(254, 187, 62);
   --white-space-row: 7.5rem;
+
+  --btn-transition-duration: .5s;
+  --link-transition-transform: .3s;
+  --link-transition-color: .5s;
+
   --btn-bg-hover: rgb(249 115 22 / .7);
   --btn-box-shadow: 1px 1px 3px #000;
 
@@ -36,11 +41,7 @@ html, body {
   overflow-x: hidden;
 }
 
-.whitespace-row-custom {
-  padding: var(--white-space-row) 0;
-}
-
-#logo {
+.logo {
     width: 2.5rem;
     height: 2.5rem;
 }
@@ -51,6 +52,7 @@ html, body {
   -webkit-backdrop-filter: saturate(180%) blur(1.875rem);
 }
 
+/* clamp? width, esetleg font-size de majd még átgondoljuk */
 a.nav-link {
   width: 6.4rem!important;
   color: var(--nav-link-text-color);
@@ -67,6 +69,76 @@ a.active {
   font-weight: bold;
 }
 
+/* footer */
+footer {
+  font-family: var(--font-poppins), sans-serif;
+}
+
+/* 🎩 Elegáns sötét */
+#footer-dark {
+  background-color: #121212;
+  color: #f8f9fa;
+}
+/* link-underline-animation class alkalmazása ezek helyett ha végleges lesz */
+#footer-dark a {
+  color: #f8f9fa;
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+#footer-dark a:hover {
+  color: var(--global-orange);
+}
+#footer-dark .slogan {
+  opacity: 0.75;
+  font-style: italic;
+}
+
+/* 🌿 Minimalista világos */
+#footer-light {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+#footer-light a {
+  color: #212529;
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+#footer-light a:hover {
+  color: #198754; /* zöld hover */
+}
+#footer-light .slogan {
+  color: #6c757d;
+  font-style: italic;
+}
+
+/* 🎨 Kreatív színes */
+#footer-colorful {
+  background: linear-gradient(90deg, #ff6f61, #ffcc00);
+  color: #ffffff;
+}
+#footer-colorful a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color .3s ease-in-out;
+}
+#footer-colorful a:hover {
+  color: #212529; /* fekete hover */
+}
+#footer-colorful .slogan {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* footer vége */
+
+.whitespace-row-custom {
+  padding: var(--white-space-row) 0;
+}
+
+.top-section-padding {
+  padding: 5rem 0;
+}
+
 /* egységes gomb css */
 .btn, input, textarea {
   border-radius: 0!important;
@@ -75,34 +147,63 @@ a.active {
 .btn.btn-dark {
   border: 1px solid var(--global-orange);
   background-color: var(--global-orange);
-  transition: background-color .5s ease-in-out, border-color .5s ease-in-out, box-shadow .5s ease-in-out;
+  transition: background-color var(--btn-transition-duration) ease-in-out, border-color var(--btn-transition-duration) ease-in-out, box-shadow var(--btn-transition-duration) ease-in-out;
 }
 
-a.btn.btn-dark:hover {
+a.btn.btn-dark:hover, button.btn.btn-dark:hover {
   border-color: transparent;
   background-color: var(--btn-bg-hover);
   box-shadow: var(--btn-box-shadow);
 }
 
-.btn.btn-outline-dark, #nav-search {
+#nav-search {
+  display: flex!important;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-outline-orange {
+  position: relative;
+  display: inline-block;
+  padding: .375rem .75rem;
   border: 1px solid var(--global-orange);
   background-color: transparent;
   color: var(--global-orange);
-  transition: background-color .5s ease-in-out, color .5s ease-in-out, box-shadow .5s ease-in-out;
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: color var(--btn-transition-duration) ease-in-out;
+  z-index: 1;
 }
 
-.btn.btn-outline-dark:hover, #nav-search:hover {
+.btn-outline-orange::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-color: var(--global-orange);
+  opacity: 0;
+  transition: opacity var(--btn-transition-duration) ease-in-out, box-shadow var(--btn-transition-duration) ease-in-out;
+  z-index: -1;
+}
+
+.btn-outline-orange:hover {
   color: var(--global-bg);
+  background-color: transparent;
   box-shadow: var(--btn-box-shadow);
 }
 
+.btn-outline-orange:hover::after {
+  opacity: 1;
+}
 /* egységes gomb css vége */
 
 .link-underline-animation {
   position: relative;
   display: inline-block;
   text-decoration: none;
+  font-style: italic;
+  color: var(--about-email-color);
+  transition: color var(--link-transition-color) ease-in-out;
 }
 
 .link-underline-animation::after {
@@ -115,7 +216,11 @@ a.btn.btn-dark:hover {
   background-color: var(--global-orange);
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform .3s ease-in-out;
+  transition: transform var(--link-transition-transform) ease-in-out;
+}
+
+.link-underline-animation:hover {
+  color: var(--global-orange);
 }
 
 .link-underline-animation:hover::after {
@@ -127,29 +232,20 @@ a.btn.btn-dark:hover {
   transform: scaleX(0);
 }
 
-/* lap tetejére gomb */
-/* #scrollTopBtn {
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  display: none;
-  z-index: 99;
-  transition: opacity 0.4s ease-in-out;
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-} */
-
 #index-contact-btn {
   position: fixed;
   bottom: 40px;
   right: 40px;
+  display: flex;
+  gap: .75rem;
   background-color: var(--global-orange);
   border-color: transparent;
   border-radius: var(--global-border-radius);
+  font-size: 13px;
+  font-weight: 600;
   z-index: 99;
   opacity: 0;
-  transition: opacity 0.6s ease-in-out, transform 0.4s ease-in-out;
+  transition: opacity var(--btn-transition-duration) ease-in-out, transform var(--btn-transition-duration) ease-in-out;
 }
 
 #index-contact-btn.visible {
@@ -160,11 +256,7 @@ a.btn.btn-dark:hover {
   transform: scale(1.1);
 }
 
-.top-section-padding {
-  padding: 5rem 0;
-}
-
-/* hero szekció */
+/********************************************** hero szekció **********************************************/
 #hero-container {
   position: relative;
   background-color: var(--hero-bg);
@@ -212,7 +304,7 @@ a.btn.btn-dark:hover {
   z-index: 3;
 }
 
-#hero-title, #hero-text {
+#hero-title {
   color: var(--hero-text);
   text-shadow: var(--hero-text-shadow);
 }
@@ -225,64 +317,32 @@ a.btn.btn-dark:hover {
   text-transform: uppercase;
 }
 
-#hero-text, #hero-cta-btn-container {
+#hero-text, #hero-cta-btn-container, #hero-slogan {
   font-family: var(--font-poppins);
 }
 
+#hero-slogan {
+  margin-bottom: 1.5rem;
+}
+
 #hero-text {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem);
 }
 
 #hero-cta-btn-container {
-  font-size: 1.125rem;
-}
-
-@media only screen and (max-width: 768px) {
-  #hero-text {
-    font-size: 1rem;
-  }
-
-  #hero-cta-btn-container {
-    font-size: .875rem;
-  }
-}
-
-#hero-whitespace {
-  width: 25%;
-}
-
-#hero-text-paragraph, #hero-cta-btn {
-  width: 75%;
-}
-
-#hero-cta-btn > a {
-  /* color: var(--about-email-color); */
-  /* global szín lesz majd */
-  color: var(--global-white);
-  text-decoration: none;
-  transition: color .5s ease-in-out;
-}
-
-#hero-cta-btn > a:hover {
-  color: var(--global-orange);
+  font-size: clamp(.875rem, 3vw, 1.125rem);
 }
 
 #hero-text-paragraph > p {
   padding-top: 0;
 }
 
-@media only screen and (max-width: 768px) {
-  #hero-whitespace, #hero-text-paragraph, #hero-cta-btn {
-    width: 100%;
-  }
-}
-
 .full-width-box {
   padding: 0!important;
 }
-/* hero szekció vége */
+/********************************************** hero szekció vége **********************************************/
 
-/* portfólió szekció */
+/********************************************** portfólió szekció **********************************************/
 .index-portfolio {
   height: 22.5rem;
   opacity: 0;
@@ -317,7 +377,7 @@ a.btn.btn-dark:hover {
 
 .index-portfolio-img-container > .index-portfolio-title {
   color: var(--portfolio-text-color);
-  font-size: 2.75rem;
+  font-size: clamp(28px, 6vw, 2.75rem);
   text-transform: uppercase;
   text-shadow: var(--portfolio-text-shadow);
   z-index: 1;
@@ -332,16 +392,16 @@ a.btn.btn-dark:hover {
   text-transform: uppercase;
   text-shadow: var(--portfolio-text-shadow);
 
-  transition: all .6s ease-in-out;
+  transition: all var(--btn-transition-duration) ease-in-out;
   z-index: 1;
 }
 
 .index-portfolio-img-container > .index-portfolio-fake-btn:hover {
   background-color: var(--btn-bg-hover);
 }
-/* portfólió szekció vége */
+/********************************************** portfólió szekció vége **********************************************/
 
-/* rólam szekció */
+/********************************************** rólam szekció **********************************************/
 #index-about-img {
   width: 100%;
   height: auto;
@@ -402,19 +462,8 @@ a.btn.btn-dark:hover {
   max-width: 450px;
 }
 
-#index-about-email, #index-about-linkedin {
-  color: var(--about-email-color);
-  text-decoration: none;
-  font-style: italic;
-  transition: color .5s ease-in-out;
-}
-
-#index-about-email:hover, #index-about-linkedin:hover {
-  color: var(--global-orange);
-}
-
-
 /* TESZT */
+/* classként megadni ha szeretném az összes outline gombra */
 #index-about-btn {
   background-color: transparent;
   border-color: var(--global-orange);
@@ -450,14 +499,12 @@ a.btn.btn-dark:hover {
 #index-about-btn:hover::after {
   background-color: var(--global-orange);
 }
-
-
 /* TESZT VÉGE */
 
 
-/* rólam szekció vége */
+/********************************************** rólam szekció vége **********************************************/
 
-/* blog szekció */
+/********************************************** blog szekció **********************************************/
 .blog-title, .blog.col, #load-more, .btn-more-blog {
   opacity: 0;
   transform: translateY(30px);
@@ -466,16 +513,14 @@ a.btn.btn-dark:hover {
 .blog-title.animate, .blog.col.animate, #load-more.animate, .btn-more-blog.animate {
   opacity: 1;
   transform: translateY(0);
-  transition: all .6s ease-out var(--delay, 0s);
+  transition: opacity var(--btn-transition-duration) ease-out var(--delay, 0s), transform var(--btn-transition-duration) ease-out var(--delay, 0s);
 }
 
 
+/********************************************** blog szekció vége **********************************************/
 
 
-/* blog szekció vége */
-
-
-/* media queries szekció */
+/********************************************** media queries szekció **********************************************/
 @media only screen and (min-width: 992px) {
   #menuContainer {
     width: 31.25rem;

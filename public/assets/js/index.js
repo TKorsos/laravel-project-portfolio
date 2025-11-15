@@ -84,21 +84,10 @@ function observerIndexAboutContainers() {
     });
 }
 
-
-
-// oldalon megjelenő contact gomb jobb alsó sarok
-function indexContactBtn() {
-    window.addEventListener('DOMContentLoaded', () => {
-        const btn = document.getElementById('index-contact-btn');
-        btn.classList.add('visible');
-    });
-}
-
 function render() {
     // initScrollBtn();
     observerIndexPortfolioImages();
     observerIndexAboutContainers();
-    indexContactBtn();
 }
 
 render();

@@ -55,8 +55,16 @@ function observerBlogCols() {
     });
 }
 
+function indexContactBtn() {
+    window.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('index-contact-btn');
+        btn.classList.add('visible');
+    });
+}
+
 function render() {
     observerBlogCols();
+    indexContactBtn();
 }
 
 render();

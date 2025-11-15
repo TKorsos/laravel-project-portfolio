@@ -13,7 +13,9 @@
                     </div>
                     @if ($posts->hasMorePages())
                         <div class="mt-4 text-center">
-                            <button class="btn btn-outline-dark" id="load-more" data-next-page="{{ $posts->nextPageUrl() }}">{{ __('Továbbiak megtekintése') }}</button>
+                            <button class="btn-outline-orange" id="load-more" data-next-page="{{ $posts->nextPageUrl() }}">
+                                {{ __('Továbbiak megtekintése') }}
+                            </button>
                         </div>
                     @endif
                 @else
