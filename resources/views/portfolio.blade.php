@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Portfólió - Várkuti Tünde Krisztina tervezőgrafikus')
+@section('title', 'Portfólió')
 
 @section('content')
     <p>

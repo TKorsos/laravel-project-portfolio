@@ -20,30 +20,39 @@
                         @endif
                     </div>
                     <div class="card-img-overlay hero-text-container px-2 px-md-3 px-lg-4 px-xl-5">
-                        <h1 id="hero-title" class="card-title">{{$globalSettings->hero_title}}</h1>
-                        <div id="hero-text" class="card-text d-flex flex-column flex-md-row gap-3">
-                            <span id="hero-whitespace" class="d-inline-block"></span>
-                            <span id="hero-text-paragraph" class="d-inline-block">
-                                <p>{!! $globalSettings->hero_content !!}</p>
-                            </span>
-                        </div>
-                        <div id="hero-cta-btn-container" class="d-flex flex-column flex-md-row justify-content-md-end gap-3">
-                            <span id="hero-whitespace" class="d-inline-block"></span>
-                            <span id="hero-cta-btn" class="d-inline-block">
-                                <a class="link-underline-animation" href="{{ $globalSettings->hero_button_url == '#' ? '#' : route($globalSettings->hero_button_url) }}">
-                                    {{ $globalSettings->hero_button_text }}
-                                </a>
-                            </span>
-                        </div>
+                        <h1 id="hero-title" class="card-title">{{$globalSettings->hero_title}}</h1>    
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <section class="row whitespace-row-custom">
-        <div class="col">
-            {{ $globalSettings->slogan }}
-            {{-- + contact gomb VAGY hero_content és hero_button + contact gomb --}}
+    <section class="row row-cols-1 whitespace-row-custom">
+        {{-- css animálás --}}
+        <div class="col-md-9 offset-md-2">
+            <div id="hero-slogan">
+                <span>
+                    "{{ $globalSettings->slogan }}"
+                </span>
+            </div>
+        </div>
+        <div class="col-md-7 offset-md-4">
+            <div id="hero-text" class="card-text d-flex flex-column flex-md-row gap-3">
+                <div id="hero-text-paragraph" class="d-inline-block">
+                    <p>{!! $globalSettings->hero_content !!}</p>
+                </div>
+            </div>
+            <div id="hero-cta-btn-container">
+                <div id="hero-cta-btn" class="d-inline-block">
+                    <a class="link-underline-animation" href="{{ $globalSettings->hero_button_url == '#' ? '#' : route($globalSettings->hero_button_url) }}">
+                        <span>
+                            <i class="fa-solid fa-headset"></i>
+                        </span>
+                        <span>
+                            {{ $globalSettings->hero_button_text }}
+                        </span>
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
     @endif
@@ -68,7 +77,7 @@
         @endif
     </section>
     <section class="row whitespace-row-custom">
-        {{-- slogan?? + contact gomb --}}
+        {{-- contact gomb --}}
     </section>
     <!-- portfólió szekció vége -->
 
@@ -86,11 +95,11 @@
                     <p id="index-about-paragraph">
                         Kreatív designer vagyok, aki a modern minimalista stílust ötvözi a funkcionális megoldásokkal. Több éves tapasztalatot szereztem kiállítások szervezésében és design oktatásban. Diplomám a Moholy-Nagy Művészeti Egyetemről származik.
                     </p>
-                    <a id="index-about-linkedin" class="link-underline-animation" href="{{ $globalSettings->linkedin_url === '#' ? '#' : $globalSettings->linkedin_url }}">
+                    <a class="link-underline-animation" href="{{ $globalSettings->linkedin_url === '#' ? '#' : $globalSettings->linkedin_url }}">
                         <i class="bi bi-linkedin" aria-hidden="true"></i>
                         LinkedIn profil
                     </a>
-                    <a id="index-about-email" class="link-underline-animation" href="mailto:designer@email.com">
+                    <a class="link-underline-animation" href="mailto: {{$globalSettings->admin_email}}">
                         <i class="bi bi-envelope-fill" aria-hidden="true"></i>
                         Kapcsolatfelvétel
                     </a>
@@ -102,7 +111,7 @@
         </div>
     </section>
     <section class="row whitespace-row-custom">
-        {{-- ??? + contact gomb --}}
+        {{-- contact gomb --}}
     </section>
     <!-- rólam szekció vége -->
 
@@ -140,7 +149,9 @@
                         @endforeach
                     </div>
                     <div class="mt-4 text-center btn-more-blog">
-                        <a href="{{ route('blog.index') }}" class="btn btn-outline-dark">{{__('További blogbejegyzések')}}</a>
+                        <a href="{{ route('blog.index') }}" class="btn-outline-orange">
+                            {{__('További blogbejegyzések')}}
+                        </a>
                     </div>
                 @else
                     <p>{{ __('Nincsenek blogbejegyzések megjelenítésre') }}</p>
@@ -149,7 +160,10 @@
         </div>
     </section>
     <section class="row whitespace-row-custom">
-        {{-- ??? + contact gomb --}}
+        {{--
+            ??? + contact gomb
+            vásárlói értékelések következő szekció? ha lesz
+        --}}
     </section>
     <!-- blog szekció vége -->
 
