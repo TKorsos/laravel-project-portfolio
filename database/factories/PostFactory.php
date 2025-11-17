@@ -18,9 +18,9 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $user_id = $this->faker->numberBetween(1, 3);
-        $title = $this->faker->words(3, true);
-        $excerpt = $this->faker->paragraph();
-        $content = $excerpt.' '.$this->faker->paragraph(5);
+        $title = magyarWords(3);
+        $excerpt = magyarLorem(2);
+        $content = $excerpt . ' ' . magyarLorem(5);
 
         return [
             'user_id' => $user_id,

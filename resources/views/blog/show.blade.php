@@ -8,8 +8,8 @@
             <h1 class="mb-4 text-center" itemprop="headline">{{ $post->title }}</h1>
             {{-- container? container-fluid? --}}
             <p>
-                <small>Írta: <span itemprop="author">{{ $post->user ? $post->user->name : 'Ismeretlen Szerző' }}</span></small><br>
-                <small>Publikálva: <time itemprop="datePublished" datetime="{{ $post->published_at->toIso8601String() }}">{{ $post->published_at->format('Y. m. d.') }}</time></small>
+                <small>{{__("written_by")}}: <span itemprop="author">{{ $post->user ? $post->user->name : __("unknown_author") }}</span></small><br>
+                <small>{{__("published_by")}}: <time itemprop="datePublished" datetime="{{ $post->published_at->toIso8601String() }}">{{ $post->published_at->format('Y. m. d.') }}</time></small>
             </p>
         
             @if($post->image_url)

@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -25,3 +26,11 @@ Route::get('/blog/{slug}', [PostController::class, 'show'])->name('blog.show');
 Route::get('/contact', function() {
     return view('contact');
 })->name('contact');
+
+// nyelv
+Route::get('/set-locale/{lang}', function ($lang) {
+    if (in_array($lang, ['hu', 'en', 'de'])) {
+        Session::put('locale', $lang);
+    }
+    return redirect()->back();
+})->name('set-locale');
