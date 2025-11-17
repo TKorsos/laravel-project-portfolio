@@ -13,7 +13,7 @@
                         @if (file_exists(public_path( $globalSettings->hero_video_url )))
                             <video class="card-img" controls autoplay muted loop>
                                 <source src="{{ asset($globalSettings->hero_video_url) }}" type="video/mp4">
-                                Your browser does not support the video tag.
+                                {{__("video_not_supported.")}}
                             </video>
                         @else
                             <img src="{{ asset($globalSettings->hero_img_url) }}" alt="Fallback kép" width="100%" height="100%" loading="lazy">
@@ -68,7 +68,7 @@
                             <a href="{{ route('portfolio.category', ['category'=> $item->slug]) }}" class="d-flex flex-column justify-content-center align-items-center w-100 h-100 text-center index-portfolio-img-container">  
                                 <img class="index-portfolio-imgs" src="{{asset($item->image_path)}}" alt="{{ $item->description ? $item->description : $item->name }}" width="100%" height="100%" loading="lazy">
                                 <h5 class="index-portfolio-title">{{ $item->name }}</h5>
-                                <span class="index-portfolio-fake-btn">Megnézem</span>
+                                <span class="index-portfolio-fake-btn">{{__("view")}}</span>
                             </a>
                         </div>
                     </div>
@@ -91,20 +91,20 @@
                     </div>
                 </div>
                 <div id="index-about-text-container" class="d-flex flex-column align-items-center">
-                    <h2 id="index-about-title">Rólam</h2>
+                    <h2 id="index-about-title">{{__("about_me")}}</h2>
                     <p id="index-about-paragraph">
-                        Kreatív designer vagyok, aki a modern minimalista stílust ötvözi a funkcionális megoldásokkal. Több éves tapasztalatot szereztem kiállítások szervezésében és design oktatásban. Diplomám a Moholy-Nagy Művészeti Egyetemről származik.
+                        {{__("about_description")}}
                     </p>
                     <a class="link-underline-animation" href="{{ $globalSettings->linkedin_url === '#' ? '#' : $globalSettings->linkedin_url }}">
                         <i class="bi bi-linkedin" aria-hidden="true"></i>
-                        LinkedIn profil
+                        {{__("linkedin_profile")}}
                     </a>
                     <a class="link-underline-animation" href="mailto: {{$globalSettings->admin_email}}">
                         <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-                        Kapcsolatfelvétel
+                        {{__("contact_me")}}
                     </a>
                     <a id="index-about-btn" href="{{ route('about') }}" class="btn btn-dark">
-                        Tovább a rólam oldalra...
+                        {{__("about_page")}}
                     </a>
                 </div>
             </div>
@@ -118,7 +118,7 @@
     <!-- blog szekció vége -->
     <section id="blog-latest" class="row">
         <div class="col px-2 px-md-3 px-lg-4 px-xl-5">
-            <h2 class="mb-4 text-center blog-title">{{ __('Legfrissebb blogbejegyzések') }}</h2>
+            <h2 class="mb-4 text-center blog-title">{{ __('latest_posts') }}</h2>
             <div class="container-fluid px-0">
                 @if($posts->count())
                     <div id="index-blog-container" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -142,7 +142,7 @@
                                         {{-- itemprop author, datePublished --}}
                                         <h5 class="card-title" itemprop="name">{{ $post->title }}</h5>
                                         <p class="card-text text-truncate" style="max-height: 6em;" itemprop="description">{!! Str::limit(strip_tags($post->excerpt ?? $post->content), 150) !!}</p>
-                                        <a href="{{ route('blog.show', $post->slug) }}" class="mt-auto btn btn-dark align-self-start" itemprop="url">{{__('Tovább olvasom')}}</a>
+                                        <a href="{{ route('blog.show', $post->slug) }}" class="mt-auto btn btn-dark align-self-start" itemprop="url">{{__('read_more')}}</a>
                                     </div>
                                 </div>
                             </div>
@@ -150,11 +150,11 @@
                     </div>
                     <div class="mt-4 text-center btn-more-blog">
                         <a href="{{ route('blog.index') }}" class="btn-outline-orange">
-                            {{__('További blogbejegyzések')}}
+                            {{__('more_posts')}}
                         </a>
                     </div>
                 @else
-                    <p>{{ __('Nincsenek blogbejegyzések megjelenítésre') }}</p>
+                    <p>{{ __('no_posts') }}</p>
                 @endif
             </div>
         </div>

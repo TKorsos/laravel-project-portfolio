@@ -10,7 +10,7 @@
                 <p class="card-text text-truncate" style="max-height: 6em;" itemprop="description">
                     {!! Str::limit(strip_tags($post->excerpt ?? $post->content), 150) !!}
                 </p>
-                <a href="{{ route('blog.show', $post->slug) }}" class="mt-auto btn btn-dark align-self-start" itemprop="url">Tovább olvasom</a>
+                <a href="{{ route('blog.show', $post->slug) }}" class="mt-auto btn btn-dark align-self-start" itemprop="url">{{__("read_more")}}</a>
             </div>
         </div>
     </div>

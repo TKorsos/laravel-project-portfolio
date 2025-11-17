@@ -64,10 +64,25 @@ a.nav-link:hover {
   color: var(--global-white)!important;
 }
 
-a.active {
+.nav-link.active {
   color: var(--global-white)!important;
   font-weight: bold;
 }
+
+/* flag TESZT */
+.flag.active {
+  /* border: 2px solid lime; */
+}
+
+.flag:not(.active) {
+  filter: grayscale(100%);
+  transition: filter .5s ease-in-out;
+}
+
+.flag:not(.active):hover {
+  filter: grayscale(0%);
+}
+/* flag TESZT vége */
 
 /* footer */
 footer {
@@ -80,7 +95,7 @@ footer {
   color: #f8f9fa;
 }
 /* link-underline-animation class alkalmazása ezek helyett ha végleges lesz */
-#footer-dark a {
+#footer-dark a:not(.icon) {
   color: #f8f9fa;
   text-decoration: none;
   transition: color .3s ease-in-out;
@@ -98,7 +113,7 @@ footer {
   background-color: #f8f9fa;
   color: #212529;
 }
-#footer-light a {
+#footer-light a:not(.icon) {
   color: #212529;
   text-decoration: none;
   transition: color .3s ease-in-out;
@@ -116,18 +131,53 @@ footer {
   background: linear-gradient(90deg, #ff6f61, #ffcc00);
   color: #ffffff;
 }
-#footer-colorful a {
+#footer-colorful a:not(.icon) {
   color: #ffffff;
   text-decoration: none;
   transition: color .3s ease-in-out;
 }
-#footer-colorful a:hover {
+#footer-colorful a:not(.icon):hover {
   color: #212529; /* fekete hover */
 }
 #footer-colorful .slogan {
   opacity: 0.7;
   font-style: italic;
 }
+
+/* TESZT */
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: center; /* középre igazítás */
+  margin-top: 20px;
+}
+
+/* 99designs-hez külön kell majd készíteni négyzet alapot amit lehet majd színezni és rá afterrel 99d-t contentként */
+.social-icons .icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  border-radius: 50%;
+  background: #000; /* még a footer színétől függ milyen lesz */
+  margin: 5px;
+  font-size: 16px;
+  color: #fff; /* még a footer színétől függ milyen lesz */
+  text-align: center;
+  transition: color .3s ease-in-out, background .3s ease-in-out;
+}
+
+/* Színes hover effektek */
+.social-icons .facebook:hover { background-color: #fff; color: #1877f2; }
+.social-icons .instagram:hover { background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5); color: #fff; }
+.social-icons .linkedin:hover { background-color: #fff; color: #0a66c2; }
+.social-icons .youtube:hover { background-color: #fff; color: #ff0000; }
+.social-icons .tiktok:hover { background: linear-gradient(45deg, #25F4EE, #FE2C55); color: #000; }
+.social-icons .behance:hover { background-color: #fff; color: #1769ff; }
+.social-icons .pinterest:hover { background-color: #fff; color: #bd081c; }
+.social-icons .x:hover { background-color: #fff; color: #000000; }
+.social-icons .designs99:hover { background-color: #fff; color: #FE5F50; }
+/* TESZT VÉGE */
 
 /* footer vége */
 

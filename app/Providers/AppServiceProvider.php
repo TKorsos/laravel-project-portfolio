@@ -52,11 +52,11 @@ class AppServiceProvider extends ServiceProvider
 
 
         $menuItems = [
-            (object) ['title' => 'Kezdőlap', 'route' => 'home'],
-            (object) ['title' => 'Portfólió', 'route' => 'portfolio'],
-            (object) ['title' => 'Rólam', 'route' => 'about'],
-            (object) ['title' => 'Blog', 'route' => 'blog.index'],
-            (object) ['title' => 'Kapcsolat', 'route' => 'contact'],
+            (object) ['title' => 'home', 'route' => 'home'],
+            (object) ['title' => 'portfolio', 'route' => 'portfolio'],
+            (object) ['title' => 'about', 'route' => 'about'],
+            (object) ['title' => 'blog', 'route' => 'blog.index'],
+            (object) ['title' => 'contact', 'route' => 'contact'],
         ];
 
         View::share('menuItems', $menuItems);
